@@ -7,9 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import id.my.okisulton.myapplication.model.Post
 import id.my.okisulton.myapplication.repository.Repository
 import kotlinx.android.synthetic.main.activity_main.*
+import retrofit2.http.POST
 
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: MainViewModel
@@ -20,6 +23,8 @@ class MainActivity : AppCompatActivity() {
         val repository = Repository()
         val viewModelFactory = MainViewModelFactory(repository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
+
+        /** GET POST*/
 //        viewModel.getPost()
 //        viewModel.myResponse.observe(this, Observer { response->
 //            if (response.isSuccessful){
@@ -34,11 +39,72 @@ class MainActivity : AppCompatActivity() {
 //            }
 //        })
 
+        /** PUSH POST*/
+//        val myPost = Post(1,1,"Oki", "Android developer")
+//        viewModel.pushPost(myPost)
+//        viewModel.myResponse.observe(this, Observer { response->
+//            if (response.isSuccessful){
+//                Log.d("Response", response.body()?.toString())
+//                Log.d("Response", response.code()?.toString())
+//                Log.d("Response", response.message())
+//
+//
+//            }else{
+//                Log.d("Response", response.code().toString())
+//                textView.text = response.code().toString()
+//            }
+//        })
+
+        /** PUSH POST2*/
+//        viewModel.pushPost2(2,2,"oki", "Android Developer")
+////        viewModel.myResponse.observe(this, Observer { response->
+////            if (response.isSuccessful){
+////                Log.d("Response", response.body()?.toString())
+////                Log.d("Response", response.code()?.toString())
+////                Log.d("Response", response.message().toString())
+////
+////
+////            }else{
+////                Log.d("Response", response.code().toString())
+////                textView.text = response.code().toString()
+////            }
+////        })
+
+        /** GET POST HEADER*/
+//        viewModel.getPostHeader()
+//        viewModel.myResponse.observe(this, Observer { response->
+//            if (response.isSuccessful){
+//                Log.d("Response", response.body()?.toString())
+//                Log.d("Response", response.code()?.toString())
+//                Log.d("Response", response.headers().toString())
+//
+//
+//            }else{
+//                Log.d("Response", response.code().toString())
+//                textView.text = response.code().toString()
+//            }
+//        })
+
+        /** GET POST HEADER2*/
+        viewModel.getPostHeader2("111222")
+        viewModel.myResponse.observe(this, Observer { response->
+            if (response.isSuccessful){
+                Log.d("Response", response.body()?.toString())
+                Log.d("Response", response.code()?.toString())
+                Log.d("Response", response.headers().toString())
+
+
+            }else{
+                Log.d("Response", response.code().toString())
+                textView.text = response.code().toString()
+            }
+        })
+
         button.setOnClickListener{
 //            getPost() // ..../posts/2
 //            getCustomePosts() // ...../posts?=userId=3
 //            getCustomeMapPosts() // ...../posts?=userId=3&_sort=id&_order=desc
-            getCustomeMapPosts2() // ...../posts?=userId=3&_sort=id&_order=desc
+//            getCustomeMapPosts2() // ...../posts?=userId=3&_sort=id&_order=desc
         }
 
         button2.setOnClickListener {

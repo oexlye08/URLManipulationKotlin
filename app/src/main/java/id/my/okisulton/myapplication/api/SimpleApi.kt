@@ -8,6 +8,19 @@ interface SimpleApi {
     @GET("posts/1")
     suspend fun getPost(): Response<Post>
 
+    @Headers(
+        "Authorization: 123123123",
+        "Platfrom : Android"
+    )
+    @GET("posts/1")
+    suspend fun getPostHeader(): Response<Post>
+
+    /**
+     * FOR DYNAMIC AUTH
+     * */
+    @GET("posts/1")
+    suspend fun getPostHeader2(@Header("Auth")Auth: String): Response<Post>
+
     @GET("posts/{postNumber}")
     suspend fun getPost2(
         @Path("postNumber") number: Int
@@ -30,4 +43,18 @@ interface SimpleApi {
         @Query("userId") userId: Int,
         @QueryMap options: Map<String, String>
     ):Response<List<Post>>
+
+    @POST("posts")
+    suspend fun pushPost(
+        @Body post: Post
+    ):Response<Post>
+
+    @FormUrlEncoded
+    @POST("posts")
+    suspend fun pushPost2(
+        @Field("userId") userId: Int,
+        @Field("id") id: Int,
+        @Field("title") title: String,
+        @Field("body") body: String
+    ):Response<Post>
 }
